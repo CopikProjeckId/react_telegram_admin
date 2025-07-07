@@ -18,6 +18,7 @@ export default function ConfigChanges() {
       <textarea
         style={{
           width: "100%",
+          minWidth: "1200px",
           height: "100%",
           backgroundColor: "#f5f5f5",
           fontSize: "18px",

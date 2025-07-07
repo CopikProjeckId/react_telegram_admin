@@ -52,12 +52,12 @@ const menu_list: MenuType[] = [
         link: ROUTES.YOUNGHEE_USER_LIST,
         icon: <ExpandMore />,
       },
-      // {
-      //   title: "Cheolsu User List",
-      //   type: "single",
-      //   link: ROUTES.CHEOLSU_USER_LIST,
-      //   icon: <ExpandMore />,
-      // },
+      {
+        title: "Cheolsu User List",
+        type: "single",
+        link: ROUTES.CHEOLSU_USER_LIST,
+        icon: <ExpandMore />,
+      },
     ],
   },
   {

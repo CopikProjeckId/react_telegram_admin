@@ -1,5 +1,6 @@
 import BotMessageSender from "../Router/Pages/Bot/MessageSender/BotMessageSender";
 import SettingBot from "../Router/Pages/Bot/Setting/SettingBot";
+import CheolsuUserList from "../Router/Pages/CheolsuUser/CheolsuUser";
 import ConfigChanges from "../Router/Pages/Config/ConfigChange/ConfigChanges";
 import ConfigChangeItemLevel from "../Router/Pages/Config/ItemLevel/ConfigChangeItemLevel";
 import TugConfigChangeItemLevel from "../Router/Pages/Config/ItemLevel/TugConfigChangeItemLevel";
@@ -28,6 +29,7 @@ export const ROUTES_COMPONENTS: Record<string, React.ReactNode> = {
   [ROUTES.USER_LIST]: <UserList />,
   [ROUTES.TUG_USER_LIST]: <TugUserList />,
   [ROUTES.YOUNGHEE_USER_LIST]: <YoungheeUserList />, // Assuming Younghee User List is similar to User List
+  [ROUTES.CHEOLSU_USER_LIST]: <CheolsuUserList />,
   [ROUTES.ITEM_LIST]: <ShopList />,
   [ROUTES.ITEM_CREATE]: <CreateItem />,
   [ROUTES.MISSION_LIST]: <MissionList />,

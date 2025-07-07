@@ -270,7 +270,7 @@ export default class DataCall {
 			});
 		}
 	}
-	public async getUserList(type?: 'tug' | 'red_and_green' | 'younghee' | 'cheolsu') {
+	public async getUserList(type?: 'tug' | 'red_and_green' | 'younghee' | 'cheolsu', page?: number, limit?: number) {
 		if (type == 'tug') {
 			return await this.fetch._get("admin/user", {
 				page: (useTugDashBoard.getState()?.user_call?.page ?? 1) * (useTugDashBoard.getState()?.user_call?.limit ?? 10),
@@ -293,13 +293,11 @@ export default class DataCall {
 			});
 		} else if (type == 'cheolsu') {
 			return await this.fetch._get("admin/user", {
-				page: (useCheolsuDashBoard.getState()?.user_call?.page ?? 1) * (useCheolsuDashBoard.getState()?.user_call?.limit ?? 10),
-				limit: useCheolsuDashBoard.getState()?.user_call?.limit
-			}, APP_CONFIG.APP_CHEOLSU_URL).then((res) => {
-				for (let rank in res.data.users) {
-					res.data.users[rank]['rank'] = Number(rank) + 1;
-				}
-				useCheolsuDashBoard.setState({ user_list: res.data.users });
+				page: page,
+				limit: limit
+			}, APP_CONFIG.APP_CHEOLSU_URL).then( async (res) => {
+				console.log(res);
+				return res.data;
 			});
 		} else {
 			return await this.fetch._get("admin/user", {
@@ -324,8 +322,8 @@ export default class DataCall {
 			});
 		}
 		else if (type == 'cheolsu') {
-			return await this.fetch._get("admin/user-detail", { id: id }, APP_CONFIG.APP_CHEOLSU_URL).then((res) => {
-				return res.data.user;
+			return await this.fetch._get(`api/users/${id}`, {}, "https://cheolsu.squidminigame.com").then((res) => {
+				return res.data.data;
 			});
 		} else {
 			return await this.fetch._get("admin/user-detail", { id: id }).then((res) => {
@@ -362,8 +360,8 @@ export default class DataCall {
 				return res.data.user;
 			});
 		} else if (type == 'cheolsu') {
-			return await this.fetch._put("admin/token", { telegramUserId: user_id, token_type: token, value: value }, APP_CONFIG.APP_CHEOLSU_URL).then((res) => {
-				return res.data.user;
+			return await this.fetch._put(`api/users/${user_id}`, { [token.toLowerCase()]: value }, "https://cheolsu.squidminigame.com").then((res) => {
+				return res.data.data;
 			});
 		} else {
 			return await this.fetch._put("admin/token", { telegramUserId: user_id, token_type: token, value: value }).then((res) => {

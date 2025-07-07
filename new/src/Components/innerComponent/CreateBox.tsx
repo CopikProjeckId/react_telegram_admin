@@ -24,8 +24,9 @@ import { DatePicker } from "@mui/x-date-pickers";
 
 interface CreateBoxProps {
   type: "bounsmissiontable" | "item";
+  _game_type?: "red_and_green" | "tug" | "younghee" | "cheolsu";
 }
-export default function CreateBox({ type }: CreateBoxProps) {
+export default function CreateBox({ type, _game_type }: CreateBoxProps) {
   const [value, setValue] = useState<Record<string, string>>({});
   const [notAddCol, setNotAddCol] = useState<string[]>([]);
   const handleAdd = (values: Record<string, string>) => {
@@ -152,14 +153,14 @@ export default function CreateBox({ type }: CreateBoxProps) {
       })}
       <Button
         variant="outlined"
-        sx={{ width: "100%", height: "50px" }}
+        sx={{ width: "100%", height: "50px", backgroundColor: "#fff" }}
         onClick={() => {
           if (Object.keys(value).length == 0) {
             alert("Please fill in all the fields");
             return;
           }
           DataCall.getInstance()
-            [type == "item" ? "createItem" : "createMission"](value as any)
+            [type == "item" ? "createItem" : "createMission"](value as any, _game_type)
             .then((res) => {
               if (res.status == 200) {
                 setValue({});
